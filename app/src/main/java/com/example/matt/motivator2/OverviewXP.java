@@ -54,9 +54,13 @@ public class OverviewXP extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //set lvl text
         lvlTextView.setText(getString(R.string.Lvl)+ " " + controller.getLvl());
+
+        //set progressbar for lvl
         lvlProgressBar.setMax(controller.getXpNext());
         lvlProgressBar.setProgress(controller.getXp());
+
         remaning.setText(controller.getXpRemaning() + " " + getString(R.string.XPRemaning));
     }
 }

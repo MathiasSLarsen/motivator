@@ -1,6 +1,8 @@
 package com.example.matt.motivator2;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,11 +15,18 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    final int mode = Activity.MODE_PRIVATE;
+    final String userPreferences= "UserPreferences";
+
+    Controller controller = Controller.getController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loadXp();
 
         /*
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
@@ -36,13 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+            mSectionsPagerAdapter.notifyDataSetChanged();
 
 
     }
 
-    public static Context getContext(){
-        return getContext();
-    }
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -92,5 +99,11 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+    }
+
+    private void loadXp(){
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(userPreferences,mode);
+           controller.setXp(sharedPreferences.getInt("xp", 0));
+
     }
 }

@@ -7,8 +7,8 @@ import static java.lang.Math.sqrt;
  */
 
 public class LvlSys {
-    private int lvl = 0;
-    private int xp = 100;
+    private int lvl;
+    private int xp;
     private int xp_next;
 
     public LvlSys(){

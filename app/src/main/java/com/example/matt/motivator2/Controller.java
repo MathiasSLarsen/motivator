@@ -48,6 +48,9 @@ public class Controller {
     public void addXp (int xp){
         lvlSys.addXp(xp);
     }
+    public void setXp(int xp){
+        lvlSys.setXp(xp);
+    }
 
     private void populateImageArray(){
         imageArray.add(R.drawable.candy);

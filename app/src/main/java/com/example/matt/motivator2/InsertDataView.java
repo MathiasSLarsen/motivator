@@ -46,6 +46,7 @@ public class InsertDataView extends Fragment {
     ArrayList<ActiveGoals> activeGoalsArray = new ArrayList<ActiveGoals>();
     ArrayList<Integer> imageArray = controller.getImageArray();
     ArrayList<String> meetGoalArray = new ArrayList<String>();
+    ArrayList<Boolean> achiveArray = new ArrayList<Boolean>();
 
 
 
@@ -66,7 +67,7 @@ public class InsertDataView extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_insert_data, container, false);
@@ -82,18 +83,18 @@ public class InsertDataView extends Fragment {
                 final TextView activeText = view.findViewById(R.id.ActivetextView);
                 activeText.setText(activeGoalsArray.get(position).getMetGoalDecpt());
 
-               // final CheckBox checkBox = view.findViewById(R.id.ActivecheckBox);
-               // checkBox.setOnClickListener(new View.OnClickListener() {
-               //     @Override
-               //     public void onClick(View arg0) {
-               //         boolean isChecked = checkBox.isChecked();
-               //         if (isChecked) {
-               //             switchArray.set(position, true);
-               //         } else {
-               //             switchArray.set(position, false);
-               //         }
-               //     }
-               // });
+                final CheckBox checkBox = view.findViewById(R.id.ActivecheckBox);
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        boolean isChecked = checkBox.isChecked();
+                        if (isChecked) {
+                            achiveArray.add(true);
+                        } else {
+                            achiveArray.add(false);
+                        }
+                    }
+                });
                 return view;
             }
         };
@@ -104,6 +105,25 @@ public class InsertDataView extends Fragment {
         //ViewGroup viewGroup = (ViewGroup) view;
         //viewGroup.addView(listview);
         // Inflate the layout for this fragment
+        final EditText kcalInput = view.findViewById(R.id.KcalInput);
+
+        Button submitButton = view.findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i =0; i<achiveArray.size(); i++){
+                    if (achiveArray.get(i)==true){
+                        newXP = newXP +50;
+                    }
+                    newXP = newXP + Integer.parseInt(kcalInput.getText().toString());
+                }
+                System.out.println("newxp = "+newXP);
+                controller.addXp(newXP);
+                System.out.println("totalXp is = " +controller.getXp());
+                savexp(controller.getXp());
+
+            }
+        });
         return view;
     }
 
@@ -112,6 +132,13 @@ public class InsertDataView extends Fragment {
             SharedPreferences sharedPreferences = getContext().getSharedPreferences(userPreferences,mode);
             goalArray.add(sharedPreferences.getBoolean(goalNameArray[i], false));
         }
+    }
+
+    private void savexp(int xp){
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(userPreferences,mode);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("xp", controller.getXp());
+        editor.commit();
     }
 
     private void populateActiveArrays(){
