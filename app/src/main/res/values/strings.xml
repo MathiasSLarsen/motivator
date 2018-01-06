@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Motivator 2</string>
+    <string name="title_activity_insert_data">InsertData</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Lvl">Lvl</string>
+    <string name="XPRemaning">XP to next lvl</string>
+    <string name="KcalToday">How many Kcal have you burned today?</string>
+
+    <!-- TODO: decriptions of goals -->
+    <string name="Decription">Select Your goals. Meet your goals several days in a row to earn achivments and a lot of XP</string>
+    <string name="CandyDecription">I will not eat any candy.</string>
+    <string name="CigiDecription">I will not smoke any cigirettes.</string>
+    <string name="FastDecription">I will fast 2 days a week.</string>
+    <string name="FoodDecription">I will eat healthy.</string>
+    <string name="Over100Decription">I will burn 100 Kcal more than I normaly do.</string>
+    <string name="Over200Decription">I will burn 200 Kcal more than I normaly do.</string>
+    <string name="Over300Decription">I will burn 300 Kcal more than I normaly do.</string>
+    <string name="Over400Decription">I will burn 400 Kcal more than I normaly do.</string>
+    <string name="Over500Decription">I will burn 500 Kcal more than I normaly do.</string>
+    <string name="SodaDecription">I will not drink any soda or other sweet drinks</string>
+    <string name="VapeDecription">I will not vape (cigerette replacment)</string>
+    <string name="WorkoutDecription">I will workout atleats 30 min 1 time a week</string>
+    <string name="Workout2Decription">I will workout atleats 30 min 2 time a week</string>
+    <string name="Workout3Decription">I will workout atleats 30 min 3 time a week</string>
+    <string name="Workout4Decription">I will workout atleats 30 min 4 time a week</string>
+
+
+    <string name="CandyMeetGoal">I have not eaten any candy today</string>
+    <string name="CigeMeetGoal">I have not smoked any cigarettes today</string>
+    <string name="FastMeetGoal">I have not consumed any Kcal today</string>
+    <string name="FoodMeetGoal">I have only eaten healthy food today</string>
+    <string name="VapeMeetGoal">I have not vaped today</string>
+    <string name="SodaMeetGoal">I did not drink any sweet drinks today</string>
+    <string name="Over100MeetGoal">I have burned over 100 Kcal more than I normaly do</string>
+    <string name="Over200MeetGoal">I have burned over 200 Kcal more than I normaly do</string>
+    <string name="Over300MeetGoal">I have burned over 300 Kcal more than I normaly do</string>
+    <string name="Over400MeetGoal">I have burned over 400 Kcal more than I normaly do</string>
+    <string name="Over500MeetGoal">I have burned over 500 Kcal more than I normaly do</string>
+    <string name="Workout1MeetGoal">I have workedout 1 time this week</string>
+    <string name="Workout2MeetGoal">I have workedout 2 time this week</string>
+    <string name="Workout3MeetGoal">I have workedout 3 time this week</string>
+    <string name="Workout4MeetGoal">I have workedout 4 time this week</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
