@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
             mSectionsPagerAdapter.notifyDataSetChanged();
 
 
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+
+
     }
 
     private void loadXp(){

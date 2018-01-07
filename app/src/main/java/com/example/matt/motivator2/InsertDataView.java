@@ -2,13 +2,16 @@ package com.example.matt.motivator2;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +29,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import android.R;
 
+
 import java.util.ArrayList;
+
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 
 
 /**
@@ -39,7 +47,7 @@ public class InsertDataView extends Fragment {
     final String userPreferences= "UserPreferences";
     ArrayAdapter arrayAdapter;
 
-    int newXP;
+    int newXP =0;
 
     String[] goalNameArray = controller.getGoalNameArray();
     ArrayList<Boolean> goalArray = new ArrayList<Boolean>();
@@ -47,6 +55,7 @@ public class InsertDataView extends Fragment {
     ArrayList<Integer> imageArray = controller.getImageArray();
     ArrayList<String> meetGoalArray = new ArrayList<String>();
     ArrayList<Boolean> achiveArray = new ArrayList<Boolean>();
+    int xpToNext = controller.getXpNext();
 
 
 
@@ -106,7 +115,7 @@ public class InsertDataView extends Fragment {
         //viewGroup.addView(listview);
         // Inflate the layout for this fragment
         final EditText kcalInput = view.findViewById(R.id.KcalInput);
-
+        final KonfettiView konfettiView = (KonfettiView)view.findViewById(R.id.viewKonfetti);
         Button submitButton = view.findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,12 +124,46 @@ public class InsertDataView extends Fragment {
                     if (achiveArray.get(i)==true){
                         newXP = newXP +50;
                     }
+                }
+                if(kcalInput.getText().toString().equals(null) || kcalInput.getText().toString().equals("")){
+
+                }
+                else {
                     newXP = newXP + Integer.parseInt(kcalInput.getText().toString());
                 }
                 System.out.println("newxp = "+newXP);
                 controller.addXp(newXP);
                 System.out.println("totalXp is = " +controller.getXp());
+                System.out.println("xp to next is = "+xpToNext);
                 savexp(controller.getXp());
+                if (xpToNext < newXP){
+
+
+                    AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create(); //Read Update
+                    alertDialog.setTitle("Congratulations");
+                    alertDialog.setMessage("You are now lvl"+ controller.getLvl());
+
+                    alertDialog.setButton("Continue..", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // here you can add functions
+                        }
+                    });
+
+                    alertDialog.show();  //<-- See This!
+
+                    konfettiView.build()
+                            .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                            .setDirection(0.0, 359.0)
+                            .setSpeed(1f, 5f)
+                            .setFadeOutEnabled(true)
+                            .setTimeToLive(2000L)
+                            .addShapes(Shape.RECT, Shape.CIRCLE)
+                            .addSizes(new Size(12, 5f))
+                            .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
+                            .stream(300, 5000L);
+
+                }
+
 
             }
         });
