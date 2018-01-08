@@ -81,29 +81,31 @@ public class InsertDataView extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_insert_data, container, false);
 
-        arrayAdapter = new ArrayAdapter(getActivity(), R.layout.achievement_input_layout2, R.id.ActivetextView, meetGoalArray) {
+        arrayAdapter = new ArrayAdapter(getActivity(), R.layout.achievement_input_layout2, R.id.ActivetextView, activeGoalsArray) {
             @Override
             public View getView(final int position, View cachedView, ViewGroup parent) {
                 View view = super.getView(position, cachedView, parent);
 
-                final ImageView imageView = view.findViewById(R.id.ActiveImageView);
-                imageView.setImageResource(activeGoalsArray.get(position).getImage());
+                //if (achiveArray.size() !=0) {
+                    final ImageView imageView = view.findViewById(R.id.ActiveImageView);
+                    imageView.setImageResource(activeGoalsArray.get(position).getImage());
 
-                final TextView activeText = view.findViewById(R.id.ActivetextView);
-                activeText.setText(activeGoalsArray.get(position).getMetGoalDecpt());
+                    final TextView activeText = view.findViewById(R.id.ActivetextView);
+                    activeText.setText(activeGoalsArray.get(position).getMetGoalDecpt());
 
-                final CheckBox checkBox = view.findViewById(R.id.ActivecheckBox);
-                checkBox.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View arg0) {
-                        boolean isChecked = checkBox.isChecked();
-                        if (isChecked) {
-                            achiveArray.add(true);
-                        } else {
-                            achiveArray.add(false);
+                    final CheckBox checkBox = view.findViewById(R.id.ActivecheckBox);
+                    checkBox.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            boolean isChecked = checkBox.isChecked();
+                            if (isChecked) {
+                                achiveArray.add(true);
+                            } else {
+                                achiveArray.add(false);
+                            }
                         }
-                    }
-                });
+                    });
+                //}
                 return view;
             }
         };
@@ -187,7 +189,7 @@ public class InsertDataView extends Fragment {
     private void populateActiveArrays(){
         for (int i = 0; i<goalArray.size(); i++){
             if (goalArray.get(i)==true){
-                activeGoalsArray.add(new ActiveGoals(imageArray.get(i), meetGoalArray.get(i)));
+                activeGoalsArray.add(new ActiveGoals(imageArray.get(i), meetGoalArray.get(i), 2));
             }
         }
     }
